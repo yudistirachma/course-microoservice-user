@@ -11,8 +11,8 @@ module.exports = {
         password: await brypt.hashSync('password', 10),
         profession: 'admin',
         role: 'admin',
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        created_at: Date.now(),
+        updated_at: Date.now(),
       },
       {
         name: 'user',
@@ -20,8 +20,8 @@ module.exports = {
         password: await brypt.hashSync('password', 10),
         profession: 'backend developer',
         role: 'user',
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        created_at: Date.now(),
+        updated_at: Date.now(),
       }
   ], {});
   },
