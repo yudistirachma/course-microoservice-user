@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
 
     const refreshToken = await RefreshToken.findOne({
         where: {
-            refresh_token: req.body.refresh_token
+            token: req.body.refresh_token
         }
     })
 

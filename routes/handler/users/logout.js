@@ -5,7 +5,7 @@ const v = new Validator()
 module.exports = async (req, res) => {
     const schema = {
         user_id: 'number|empty:false',
-        refresh_token: 'string|empty:false',
+        // refresh_token: 'string|empty:false',
     }
 
     const validate = v.validate(req.body, schema)
@@ -26,21 +26,25 @@ module.exports = async (req, res) => {
         })
     }
 
-    const token = await RefreshToken.findOne({
+    // const token = await RefreshToken.findOne({
+    //     where: {
+    //         user_id : req.body.user_id,
+    //         // token: req.body.refresh_token
+    //     }
+    // })
+
+    // if (!token) {
+    //     return res.status(400).json({
+    //         status: false,
+    //         message: 'You are not logged in'
+    //     })
+    // }
+
+    await RefreshToken.destroy({
         where: {
-            user_id : req.body.user_id,
-            refresh_token: req.body.refresh_token
+            user_id: req.body.user_id
         }
     })
-
-    if (!token) {
-        return res.status(400).json({
-            status: false,
-            message: 'You are not logged in'
-        })
-    }
-
-    await token.destroy()
 
     return res.json({
         status: true,
